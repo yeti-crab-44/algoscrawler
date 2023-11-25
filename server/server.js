@@ -2,7 +2,17 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-// app.get
+// when view is clicked, send query to users.algo.solutions
+// return status and object
+
+// when add new problem is clicked
+// redirect to add problem page
+// take the body of the res and create new database entry
+
+// when submit is clicked in add problem, redirect to when view is clicked.
+
+// when add solution is clicked, redirect to Problem and Prompt
+// take body of res and create new database entry
 
 app.use('*', (req, res) => {
   res.status(404).send('Error 404!');
