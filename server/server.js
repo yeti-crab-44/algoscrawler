@@ -1,12 +1,33 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
 const algoController = require('./controllers/algoController.js');
+const mongoose = require('mongoose');
 
-app.use('/', algoController.testDB, (req, res) => {
+const mongoURI =
+  'mongodb+srv://algoscrawler:TeamYetiCrab@algoscrawler.jclszjj.mongodb.net/?retryWrites=true&w=majority';
+// mongoose.connect(mongoURI);
+
+const connectDB = async () => {
+  try {
+    // console.log('uri:', process.env.MONGO_URI)
+    const connect = await mongoose.connect(mongoURI);
+    console.log('MongoDB connected...');
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+};
+
+connectDB();
+
+app.use(express.json()); //to receive req.body
+app.use(express.urlencoded({ extended: false }));
+
+app.post('/api/add-problem', algoController.testDB, (req, res) => {
+  console.log('hello');
   console.log('req.body', req.body);
-  // console.log(res.json(res.locals.user));
+  console.log('res.locals.user: ', res.json(res.locals.user));
+  res.status(200).json(res.locals.user);
 });
 
 // when view is clicked, send query to users.algo.solutions
@@ -34,7 +55,7 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign({}, defaultErr, err);
 });
 
-app.listen(8080, () => {
-  console.log('Server listening on port 8080');
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
 });
 module.exports = app;

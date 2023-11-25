@@ -8,15 +8,19 @@ const algoController = {};
 
 algoController.testDB = async (req, res, next) => {
   try {
-    console.log('hello');
+    console.log('hello from algocontroller.testDB');
     const newUser = req.body;
-    console.log('new user', newUser);
+    console.log('newUser:', newUser);
+    const newSolutions = req.body.solutions;
+    console.log('newSolutions', newSolutions);
 
     const newCreatedUser = await User.create(newUser);
+    console.log('newCreatedUser worked');
+    console.log('newCreatedUser', newCreatedUser);
     res.locals.user = newCreatedUser;
     return next();
-  } catch {
-    return next('this is an error');
+  } catch (err) {
+    return next('this is an error', err);
   }
 };
 
