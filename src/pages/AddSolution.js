@@ -8,7 +8,7 @@ const AddSolution = () => {
         <br />
         <input type="text" id="solution" name="solution" />
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" id="submit" value="Submit" />
       </form>
     </section>
   );

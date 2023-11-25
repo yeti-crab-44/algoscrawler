@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <section className="heading">
-        <h1>Algoscrawler</h1>
+        <h1>Algorithms</h1>
       </section>
 
       <section className="problem-list">
