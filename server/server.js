@@ -2,6 +2,13 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+const algoController = require('./controllers/algoController.js');
+
+app.use('/', algoController.testDB, (req, res) => {
+  console.log('req.body', req.body);
+  // console.log(res.json(res.locals.user));
+});
+
 // when view is clicked, send query to users.algo.solutions
 // return status and object
 
@@ -27,7 +34,7 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign({}, defaultErr, err);
 });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(8080, () => {
+  console.log('Server listening on port 8080');
 });
 module.exports = app;
