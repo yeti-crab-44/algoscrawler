@@ -6,7 +6,12 @@ import { Provider } from 'react-redux';
 import '../stylesheets/styles.scss';
 
 const App = () => {
-  return <div>I am inside App.js!</div>;
+  return (
+    <div>
+      I am inside App.js!
+      <button>Hello!</button>
+    </div>
+  );
 };
 // previous 3 lines replaced by ReactDOM.render block
 
