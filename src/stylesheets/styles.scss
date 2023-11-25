@@ -3,21 +3,37 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  background-color: aliceblue;
   //   overflow: hidden;
 }
 
 // App
 .container {
-  width: 100%;
+  width: 90%;
   max-width: 1000px;
-  margin: 0 auto;
   text-align: center;
+  margin: 20px;
+  padding-bottom: 20px;
 }
 
-.heading {
+#heading {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 50px;
+  color: rgb(102, 195, 164);
+}
+
+.problem-list {
+  border: thick groove rgb(0, 208, 255);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+#indivAlgo {
+  margin: 20px;
+  border: solid rgba(32, 162, 218, 0.388);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .form {
@@ -29,15 +45,24 @@ body {
   margin-bottom: 20px;
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
+#submit {
+  width: 40%;
+  margin: 20px;
+}
+
+#solution {
+  width: 90%;
+  max-width: 1000px;
+  height: 250px;
   padding: 15px;
   border: 1px solid #dbd9d9;
   border-radius: 5px;
+  color: rgb(81, 248, 231);
+  background-color: rgb(51, 47, 47);
   //   margin-bottom: 10px;
 }
 
-.form-group textarea {
-  height: 250px;
+#prompt {
+  color: rgb(81, 248, 231);
+  background-color: rgb(51, 47, 47);
 }
