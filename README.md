@@ -1,2 +1,2 @@
 # algoscrawler
-Create and save multiple solutions to alogorithms.
+Create and save multiple solutions and notes on algorithms!
