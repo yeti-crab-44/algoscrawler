@@ -5,16 +5,16 @@ import { Provider } from 'react-redux';
 
 import '../stylesheets/styles.scss';
 
-// const App = () => {
-//   return <div>I am inside App.js!</div>;
-// };
-//previous 3 lines replaced by ReactDOM.render block
+const App = () => {
+  return <div>I am inside App.js!</div>;
+};
+// previous 3 lines replaced by ReactDOM.render block
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// );
 
 export default App;
