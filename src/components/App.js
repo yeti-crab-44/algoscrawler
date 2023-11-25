@@ -2,24 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { store } from '../app/store';
 import { Provider } from 'react-redux';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../stylesheets/styles.scss';
+
+import Home from '../pages/Home';
+import Problem from '../pages/Problem';
+import AddProblem from '../pages/AddProblem';
+import AddSolution from '../pages/AddSolution';
+import Header from '../components/Header';
 
 const App = () => {
   return (
-    <div>
-      I am inside App.js!
-      <button>Hello!</button>
-    </div>
+    <BrowserRouter>
+      <div className="container">
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/problem/1" element={<Problem />} />
+          <Route path="/add-problem" element={<AddProblem />} />
+          <Route path="/add-solution" element={<AddSolution />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
-// previous 3 lines replaced by ReactDOM.render block
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById('root')
-// );
 
 export default App;
