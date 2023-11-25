@@ -6,6 +6,7 @@ import '../stylesheets/styles.scss';
 
 const App = () => {
   return <div>I am inside App.js!Rose!!</div>;
+
 };
 // previous 3 lines replaced by ReactDOM.render block
 
