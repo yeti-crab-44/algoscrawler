@@ -1,18 +1,23 @@
 import React from 'react';
 import ProblemItem from '../components/ProblemItem';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  //get problem array from DB (problemName, prompt, solutions array)
+  const navigate = useNavigate();
+  const addProblemClick = () => {
+    navigate('/add-problem');
+  };
+
+  /* -----------------------mock data---------------------*/
   const problemList = [
-    { id: 1, problemName: 'Two Sum', prompt: 'some prompt 1' },
-    { id: 2, problemName: 'Valid Parentheses', prompt: 'some prompt 2' },
+    { id: 1, problemName: 'Two Sum' },
+    { id: 2, problemName: 'Sudoku Solver' },
     {
       id: 3,
       problemName: 'Median of Two Sorted Arrays',
-      prompt: 'some prompt 3',
     },
   ];
+  /* -----------------------mock data---------------------*/
 
   return (
     <div>
@@ -24,12 +29,13 @@ const Home = () => {
         {problemList.map((problem) => {
           return (
             <ProblemItem
-              key={problem.problemName}
-              name={problem.problemName}
+              key={problem.id}
               id={problem.id}
+              name={problem.problemName}
             />
           );
         })}
+        <button onClick={addProblemClick}>Add New Algo</button>
       </section>
     </div>
   );

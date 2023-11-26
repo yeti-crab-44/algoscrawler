@@ -42,6 +42,10 @@ app.post('/api/add-problem', algoController.testDB, (req, res) => {
 // when add solution is clicked, redirect to Problem and Prompt
 // take body of res and create new database entry
 
+app.get('*', (req, res) => {
+  console.log(path.join(__dirname, '../src/index.html'));
+  res.sendFile(path.join(__dirname, '../src/index.html'));
+});
 app.use('*', (req, res) => {
   res.status(404).send('Error 404!');
 });

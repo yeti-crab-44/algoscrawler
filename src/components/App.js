@@ -14,13 +14,13 @@ import Header from '../components/Header';
 const App = () => {
   return (
     <BrowserRouter>
-      <div className='container'>
+      <div className="container">
         <Header />
         <Routes>
-          <Route path='/home' element={<Home />} />
-          <Route path='/problem/1' element={<Problem />} />
-          <Route path='/add-problem' element={<AddProblem />} />
-          <Route path='/add-solution' element={<AddSolution />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/problem/:id" element={<Problem />} />
+          <Route path="/add-problem" element={<AddProblem />} />
+          <Route path="/problem/:id/add-solution" element={<AddSolution />} />
         </Routes>
       </div>
     </BrowserRouter>

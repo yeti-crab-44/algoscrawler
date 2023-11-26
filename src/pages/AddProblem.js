@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddProblem = () => {
   //   const [formData, setFormData] = useState({ problemName: '', prompt: '' });
@@ -15,10 +16,16 @@ const AddProblem = () => {
     setPrompt(e.target.value);
   };
 
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     //dispatch action creator to update redux state
     //send API request to create new problem in DB
+    const responseOK = true;
+    const idGenerated = 1;
+    if (responseOK) {
+      navigate(`/problem/${idGenerated}`);
+    }
   };
 
   return (
@@ -51,6 +58,10 @@ const AddProblem = () => {
               placeholder="Prompt"
               required
             />
+          </div>
+
+          <div className="form-group">
+            <button>Submit</button>
           </div>
         </form>
       </section>
