@@ -7,11 +7,11 @@ import { viewOneProblemAndSolutions } from '../actions/actions';
 const Problem = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  //Use isLoading to delay the rendering of components until the data is fully loaded and available
+  //use isLoading to delay the rendering of components until the data is fully loaded and available
   //if you try to access properties of an object that hasn't been fetched yet, it will result in a runtime error
   const [isLoading, setIsLoading] = useState(true);
   const problem = useSelector((state) => state.algos.currentProblem);
-  console.log('currentProblem in state:', problem);
+  // console.log('currentProblem in state:', problem);
 
   // @desc   Get single problem and associated solutions
   // @route  GET /api/problems/:problemId
@@ -28,11 +28,15 @@ const Problem = () => {
         console.log('Error fetching data:', error);
         setIsLoading(false);
       });
-  }, [dispatch, id, problem]);
+  }, [dispatch, id]);
 
   const navigate = useNavigate();
   const addSolutionClick = () => {
     navigate(`/problem/${id}/add-solution`);
+  };
+
+  const handleUpdate = (updatedSolution, solutionId) => {
+    dispatch(updateSolutionAction(id, solution._id, updatedSolution));
   };
 
   return (
@@ -48,8 +52,17 @@ const Problem = () => {
               <div>Currently no solutions</div>
             ) : (
               problem.solutions.map((solution, idx) => {
-                console.log('solution:', solution);
-                return <CodeEditor key={idx} value={solution.solution} />;
+                // console.log('solution:', solution);
+                return (
+                  <div key={idx}>
+                    <CodeEditor value={solution.solution} />
+                    <button
+                      onClick={() => handleUpdate(solution, solution._id)}
+                    >
+                      Update
+                    </button>
+                  </div>
+                );
               })
             )}
           </div>
