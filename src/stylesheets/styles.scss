@@ -103,24 +103,22 @@ Button {
   font-size: 25px;
 }
 
-#yetiCrabsss {
+#yetiCrabs {
   display: flex;
   justify-content: center;
 }
 
 .crab {
   animation-name: dance1;
-  animation-duration: 20s;
+  animation-duration: 15s;
   animation-iteration-count: infinite;
-  position: relative;
   height: 10vw;
 }
 
 .crabE {
   animation-name: dance2;
-  animation-duration: 20s;
+  animation-duration: 15s;
   animation-iteration-count: infinite;
-  position: relative;
   height: 10vw;
 }
 
@@ -136,13 +134,13 @@ Button {
 		transform: rotateZ(60deg);
 	}
 	30% {
-    left: 50%;
 		transform: rotateZ(-40deg);
 	}
   40% {
 		transform: rotateZ(60deg);
 	}
   50% {
+    left: 100%;
     transform: rotateZ(-40deg);
   }
 	60% {
@@ -152,7 +150,6 @@ Button {
 		transform: rotateZ(-40deg);
 	}
   80% {
-    left: -50%;
     transform: rotateZ(60deg);
   }
   90% {
@@ -176,13 +173,13 @@ Button {
 		transform: rotateZ(-40deg);
 	}
 	30% {
-    left: 50%;
 		transform: rotateZ(60deg);
 	}
   40% {
 		transform: rotateZ(-40deg);
 	}
   50% {
+    left: 100%;
     transform: rotateZ(60deg);
   }
 	60% {
@@ -192,7 +189,6 @@ Button {
 		transform: rotateZ(60deg);
 	}
   80% {
-    left: -50%;
     transform: rotateZ(-40deg);
   }
   90% {
