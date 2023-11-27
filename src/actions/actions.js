@@ -27,10 +27,24 @@ export const addProblem = (problem) => ({
   payload: problem,
 });
 
-export const viewOneProblemAndSolutions = (problemId) => ({
-  type: types.VIEW_ONE_PROBLEM_AND_SOLUTIONS,
-  payload: problemId,
-});
+export const viewOneProblemAndSolutions = (problemId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`/api/problems/${problemId}/solutions`, {
+        method: 'GET',
+      });
+
+      const data = await response.json();
+
+      dispatch({
+        type: types.VIEW_ONE_PROBLEM_AND_SOLUTIONS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error fetching problem:', error);
+    }
+  };
+};
 
 export const addSolution = (problemId, solution) => ({
   type: types.ADD_SOLUTION,

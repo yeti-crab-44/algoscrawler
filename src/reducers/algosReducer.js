@@ -18,6 +18,7 @@ const initialState = {
     //     ]
     // }
   ],
+  currentProblem: null,
   loading: false,
   error: null,
 };
@@ -28,6 +29,12 @@ const algosReducer = (state = initialState, action) => {
       return {
         ...state,
         problems: action.payload,
+      };
+
+    case types.VIEW_ONE_PROBLEM_AND_SOLUTIONS:
+      return {
+        ...state,
+        currentProblem: action.payload,
       };
 
     default:
