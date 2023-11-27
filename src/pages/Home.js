@@ -1,35 +1,44 @@
 import React from 'react';
 import ProblemItem from '../components/ProblemItem';
-import { useParams } from 'react-router-dom';
+import TypeWriter from '../components/TypeWriter';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  //get problem array from DB (problemName, prompt, solutions array)
+  const navigate = useNavigate();
+  const addProblemClick = () => {
+    navigate('/add-problem');
+  };
+
+  /* -----------------------mock data---------------------*/
+  // @desc    Get all problems
+  // @route   GET api/problems
   const problemList = [
-    { id: 1, problemName: 'Two Sum', prompt: 'some prompt 1' },
-    { id: 2, problemName: 'Valid Parentheses', prompt: 'some prompt 2' },
+    { id: 1, title: 'Two Sum' },
+    { id: 2, title: 'Sudoku Solver' },
     {
       id: 3,
-      problemName: 'Median of Two Sorted Arrays',
-      prompt: 'some prompt 3',
+      title: 'Median of Two Sorted Arrays',
     },
   ];
+  /* -----------------------mock data---------------------*/
 
   return (
     <div>
-      <section className="heading">
-        <h1>Algorithms</h1>
+      <section className="type-writer">
+        <TypeWriter />
       </section>
 
       <section className="problem-list">
         {problemList.map((problem) => {
           return (
             <ProblemItem
-              key={problem.problemName}
-              name={problem.problemName}
+              key={problem.id}
               id={problem.id}
+              name={problem.title}
             />
           );
         })}
+        <button onClick={addProblemClick}>Add New Algo</button>
       </section>
     </div>
   );
