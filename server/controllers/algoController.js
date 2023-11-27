@@ -6,6 +6,8 @@ const Algo = require('../models/algoModel');
 
 const algoController = {};
 
+// returns all algos in the database
+// '/api/problems'
 algoController.getAllProblems = async (req, res, next) => {
   try {
     console.log('you are in the getAllProblems method');
@@ -18,6 +20,22 @@ algoController.getAllProblems = async (req, res, next) => {
   }
 };
 
+// returns one algo with all of its solutions
+// '/api/problems/:problemId/solutions'
+algoController.getSolutions = async (req, res, next) => {
+  try {
+    const { algo_name } = req.body;
+    const search = await Algo.findOne({ algo_name });
+    console.log(search);
+    res.locals.algoSolutions = search;
+    return next();
+  } catch {
+    return next('error getting solutions');
+  }
+};
+
+// creates and returns a new algo
+// '/api/add-problem'
 algoController.addProblem = async (req, res, next) => {
   try {
     console.log(req.body);
@@ -33,14 +51,19 @@ algoController.addProblem = async (req, res, next) => {
   }
 };
 
+// '/api/add-solution'
 algoController.addSolution = async (req, res, next) => {
   try {
-    const { algo_name, solution_1_code } = req.body;
+    const { algo_name, newSolution } = req.body;
     console.log(req.body);
-    const search = await Algo.findOne({ algo_name });
-    search.updateOne({ [search.solutions]: { $push: newSolution } });
-    //replacing, not pushing
-    res.locals.solution = search.solutions;
+    // const search = await Algo.findOne({ algo_name });
+    // console.log('search:', search);
+    const update = await Algo.updateOne(
+      { algo_name },
+      { $push: { solutions: { newSolution } } }
+    );
+    console.log(update);
+    res.locals.solution = newSolution;
 
     return next();
   } catch {
