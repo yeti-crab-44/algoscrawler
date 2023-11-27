@@ -46,7 +46,7 @@ export const addSolutionToAProblem = (problemId, solution) => {
   return async (dispatch) => {
     try {
       const response = await fetch(`/api/problems/${problemId}`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },

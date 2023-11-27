@@ -26,20 +26,16 @@ app.get('/api/problems', algoController.getAllProblems, (req, res) => {
   return res.status(200).json(res.locals.allProblems);
 });
 
-app.get(
-  '/api/problems/:problemId/solutions',
-  algoController.getSolutions,
-  (req, res) => {
-    return res.status(200).json(res.locals.algoSolutions);
-  }
-);
+app.get('/api/problems/:problemId', algoController.getSolutions, (req, res) => {
+  return res.status(200).json(res.locals.algoSolutions);
+});
 
 app.post('/api/add-problem', algoController.addProblem, (req, res) => {
   return res.status(200).json(res.locals.algo);
 });
 
-app.put('/api/add-solution', algoController.addSolution, (req, res) => {
-  return res.status(200).json(res.locals.solution);
+app.put('/api/problems/:problemId', algoController.addSolution, (req, res) => {
+  return res.status(200).json(res.locals.updatedAlgo);
 });
 
 app.get('*', (req, res) => {
