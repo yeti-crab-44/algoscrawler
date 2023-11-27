@@ -22,11 +22,15 @@ connectDB();
 app.use(express.json()); //to receive req.body
 app.use(express.urlencoded({ extended: false }));
 
+app.get('/api/problems', algoController.getAllProblems, (req, res) => {
+  return res.status(200).json(res.locals.allProblems);
+});
+
 app.post('/api/add-problem', algoController.addProblem, (req, res) => {
-  // console.log('hello you have made it through the addProblem method');
-  // console.log('req.body', req.body.row);
+  console.log('hello you have made it through the addProblem method');
+
   // console.log('res.locals.user: ', res.json(res.locals.user));
-  return res.status(200).json(res.locals.algo); //.json(res.locals.user);
+  return res.status(200).json(res.locals.algo);
 });
 
 app.post('/api/add-solution', algoController.addSolution, (req, res) => {
