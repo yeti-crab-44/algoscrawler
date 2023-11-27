@@ -28,8 +28,8 @@ algoController.getAllProblems = async (req, res, next) => {
 // '/api/problems/:problemId/solutions'
 algoController.getSolutions = async (req, res, next) => {
   try {
-    const { _id } = req.body;
-    const search = await Algo.findOne({ _id });
+    const { problemId } = req.params;
+    const search = await Algo.findOne({ _id: problemId });
     res.locals.algoSolutions = search;
     return next();
   } catch {
@@ -66,12 +66,14 @@ algoController.addProblem = async (req, res, next) => {
 // '/api/add-solution'
 algoController.addSolution = async (req, res, next) => {
   try {
-    const { _id, newSolution } = req.body;
+    const { problemId } = req.params;
+    const { solution } = req.body;
     const update = await Algo.updateOne(
-      { _id },
-      { $push: { solutions: { newSolution } } }
+      { _id: problemId },
+      { $push: { solutions: { solution } } }
     );
-    res.locals.solution = newSolution;
+    const search = await Algo.findOne({ _id: problemId });
+    res.locals.updatedAlgo = search;
     return next();
   } catch {
     return next({

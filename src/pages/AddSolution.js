@@ -24,6 +24,11 @@ const AddSolution = () => {
   };
 
   return (
+    <div>
+    <section className="heading">
+    <h1>Add Solution</h1>
+    </section>
+
     <section className="form-group">
       <form onSubmit={onSubmit}>
         <div className="code-editor">
@@ -44,6 +49,7 @@ const AddSolution = () => {
         </div>
       </form>
     </section>
+    </div>
   );
 };
 
