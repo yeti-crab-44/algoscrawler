@@ -5,8 +5,9 @@ import React from 'react';
 const Header = () => {
   return (
     <div id="heading">
-      <h2>Algoscrawler</h2>
-      <img src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png" />
+      <h1>
+        <a href="/"><img src="https://i.ibb.co/Km7GqS9/Algoscrawler-logo.png" id="logo"/></a>
+      </h1>
     </div>
   );
 };
