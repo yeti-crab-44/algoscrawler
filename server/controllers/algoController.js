@@ -6,6 +6,15 @@ const Algo = require('../models/algoModel');
 
 const algoController = {};
 
+// algoController.getAllProblems = async (req, res, next) => {
+//   try {
+//     const algoName =
+//   }
+//   catch {
+
+//   }
+// }
+
 algoController.addProblem = async (req, res, next) => {
   try {
     // console.log(req.body);
