@@ -1,7 +1,7 @@
 import React from 'react';
 
+//replaced by <CodeEditor/>
 const SolutionItem = ({ props }) => {
-  console.log('solution props', props);
   return (
     <div>
       <p> {props.solution}</p>

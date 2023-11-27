@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SolutionItem from '../components/SolutionItem';
+import CodeEditor from '../components/CodeEditor';
 
 const Problem = () => {
   const { id } = useParams();
@@ -12,6 +13,9 @@ const Problem = () => {
   };
 
   /* -----------------------mock data---------------------*/
+  // @desc   Get single problem and associated solutions
+  // @route  GET /api/problems/:problemId/solutions
+
   function add(a, b) {
     return a + b;
   }
@@ -25,7 +29,22 @@ const Problem = () => {
         'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.',
       solutions: [
         {
-          id: '1234',
+          id: '11',
+          timeC: 'O(n)',
+          spaceC: 'O(1)',
+          solution: solution1,
+          notes: 'first attempt - recursive solution',
+        },
+
+        {
+          id: '12',
+          timeC: 'O(n)',
+          spaceC: 'O(1)',
+          solution: solution1,
+          notes: 'first attempt - recursive solution',
+        },
+        {
+          id: '13',
           timeC: 'O(n)',
           spaceC: 'O(1)',
           solution: solution1,
@@ -48,7 +67,6 @@ const Problem = () => {
       solutions: [],
     },
   ];
-
   /* -----------------------mock data---------------------*/
 
   return (
@@ -56,15 +74,16 @@ const Problem = () => {
       <h2> {problemList[problemId].problemName} </h2>
       <p> {problemList[problemId].prompt} </p>
 
-      {problemList[problemId].solutions.length === 0 ? (
-        <div>Currently no solutions</div>
-      ) : (
-        problemList[problemId].solutions.map((solution) => (
-          <SolutionItem key={solution.id} props={solution} />
-        ))
-      )}
-
-      <button onClick={addSolutionClick}>Add Solution</button>
+      <div className="solutions-container">
+        {problemList[problemId].solutions.length === 0 ? (
+          <div>Currently no solutions</div>
+        ) : (
+          problemList[problemId].solutions.map((solution) => (
+            <CodeEditor value={solution.solution} />
+          ))
+        )}
+      </div>
+      <button onClick={addSolutionClick}>Add New Solution</button>
     </section>
   );
 };

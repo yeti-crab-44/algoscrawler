@@ -19,8 +19,10 @@ const AddProblem = () => {
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
-    //dispatch action creator to update redux state
-    //send API request to create new problem in DB
+
+    // @desc    Add a new problem
+    // @route   POST api/problems
+
     const responseOK = true;
     const idGenerated = 1;
     if (responseOK) {

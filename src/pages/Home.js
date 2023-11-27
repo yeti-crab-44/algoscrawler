@@ -1,7 +1,7 @@
 import React from 'react';
 import ProblemItem from '../components/ProblemItem';
+import TypeWriter from '../components/TypeWriter';
 import { useNavigate } from 'react-router-dom';
-import { Typewriter } from 'react-simple-typewriter';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -10,12 +10,14 @@ const Home = () => {
   };
 
   /* -----------------------mock data---------------------*/
+  // @desc    Get all problems
+  // @route   GET api/problems
   const problemList = [
-    { id: 1, problemName: 'Two Sum' },
-    { id: 2, problemName: 'Sudoku Solver' },
+    { id: 1, title: 'Two Sum' },
+    { id: 2, title: 'Sudoku Solver' },
     {
       id: 3,
-      problemName: 'Median of Two Sorted Arrays',
+      title: 'Median of Two Sorted Arrays',
     },
   ];
   /* -----------------------mock data---------------------*/
@@ -23,24 +25,7 @@ const Home = () => {
   return (
     <div>
       <section className="type-writer">
-        <div>
-          <span style={{ fontSize: '40px' }}> Hello </span>
-          <span style={{ color: 'green', fontSize: '40px' }}>
-            <Typewriter
-              words={['World', 'ECRI-44', 'Developers!']}
-              loop={5}
-              cursor
-              cursorStyle="<"
-              typeSpeed={50}
-              deleteSpeed={35}
-              delaySpeed={1000}
-            />
-          </span>
-        </div>
-      </section>
-
-      <section className="heading">
-        <h1>Algorithms</h1>
+        <TypeWriter />
       </section>
 
       <section className="problem-list">
@@ -49,7 +34,7 @@ const Home = () => {
             <ProblemItem
               key={problem.id}
               id={problem.id}
-              name={problem.problemName}
+              name={problem.title}
             />
           );
         })}

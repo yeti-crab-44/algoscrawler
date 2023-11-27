@@ -16,6 +16,17 @@ body {
   padding-bottom: 20px;
 }
 
+.solutions-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.code-editor {
+  display: flex;
+  justify-content: center;
+}
+
 #heading {
   font-size: 2rem;
   font-weight: 700;
