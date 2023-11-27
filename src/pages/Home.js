@@ -4,6 +4,7 @@ import TypeWriter from '../components/TypeWriter';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { viewAllProblems } from '../actions/actions';
+import '../stylesheets/styles.scss';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Home = () => {
             />
           ))
         )}
-        <button onClick={addProblemClick}>Add New Algo</button>
+        <button onClick={addProblemClick} id="addNewProblemButton">Add New Algo</button>
       </section>
     </div>
   );

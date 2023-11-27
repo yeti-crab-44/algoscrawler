@@ -3,6 +3,7 @@
 body {
   font-family: 'Quantico', sans-serif;
   height: 100vh;
+  color: #13273e;
   background-color: aliceblue;
   background: url("https://i.ibb.co/0JcZvRr/seafloor.png") no-repeat bottom right, linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
   background-size: contain;
@@ -44,6 +45,16 @@ body {
   background-color: #7db3b94b;
 }
 
+Button {
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #1f568d;
+  border-color: rgb(57, 60, 219);
+  color: #e5eef9;
+  font-family: 'Quantico', sans-serif;
+  border-radius: 10px;
+}
+
 #indivAlgo {
   margin: 20px;
   border: solid #589ed8;
@@ -78,12 +89,117 @@ body {
   //   margin-bottom: 10px;
 }
 
+#problemName {
+  font-size: 20px;
+  border-radius: 5px;
+  font-family: 'Quantico', sans-serif;
+  color: #13273e;
+}
+
 #prompt {
   color: rgb(81, 248, 231);
   background-color: rgb(51, 47, 47);
+  width: 25vw;
+  font-size: 25px;
 }
 
 #yetiCrabsss {
   display: flex;
   justify-content: center;
+}
+
+.crab {
+  animation-name: dance1;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  position: relative;
+  height: 10vw;
+}
+
+.crabE {
+  animation-name: dance2;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  position: relative;
+  height: 10vw;
+}
+
+@keyframes dance1 {
+  0% {
+		left: 0%;
+    transform: rotateZ(60deg);
+	}
+  10% {
+		transform: rotateZ(-40deg);
+	}
+	20% {
+		transform: rotateZ(60deg);
+	}
+	30% {
+    left: 50%;
+		transform: rotateZ(-40deg);
+	}
+  40% {
+		transform: rotateZ(60deg);
+	}
+  50% {
+    transform: rotateZ(-40deg);
+  }
+	60% {
+		transform: rotateZ(60deg);
+	}
+  70% {
+		transform: rotateZ(-40deg);
+	}
+  80% {
+    left: -50%;
+    transform: rotateZ(60deg);
+  }
+  90% {
+		transform: rotateZ(-40deg);
+	}
+	100% {
+    left: 0%;
+		transform: rotateZ(60deg);
+	}
+}
+
+@keyframes dance2 {
+  0% {
+		left: 0%;
+    transform: rotateZ(-40deg);
+	}
+  10% {
+		transform: rotateZ(60deg);
+	}
+	20% {
+		transform: rotateZ(-40deg);
+	}
+	30% {
+    left: 50%;
+		transform: rotateZ(60deg);
+	}
+  40% {
+		transform: rotateZ(-40deg);
+	}
+  50% {
+    transform: rotateZ(60deg);
+  }
+	60% {
+		transform: rotateZ(-40deg);
+	}
+  70% {
+		transform: rotateZ(60deg);
+	}
+  80% {
+    left: -50%;
+    transform: rotateZ(-40deg);
+  }
+  90% {
+		transform: rotateZ(60deg);
+	}
+	100% {
+    left: 0%;
+		transform: rotateZ(-40deg);
+	}
 }

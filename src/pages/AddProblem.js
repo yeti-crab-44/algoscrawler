@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../stylesheets/styles.scss';
 
 const AddProblem = () => {
   //   const [formData, setFormData] = useState({ problemName: '', prompt: '' });
@@ -63,7 +64,7 @@ const AddProblem = () => {
           </div>
 
           <div className="form-group">
-            <button>Submit</button>
+            <button id="addProblemSubmit">Submit</button>
           </div>
         </form>
       </section>

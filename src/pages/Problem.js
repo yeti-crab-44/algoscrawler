@@ -83,7 +83,7 @@ const Problem = () => {
           ))
         )}
       </div>
-      <button onClick={addSolutionClick}>Add New Solution</button>
+      <button onClick={addSolutionClick} id="newSolutionButton" >Add New Solution</button>
     </section>
   );
 };

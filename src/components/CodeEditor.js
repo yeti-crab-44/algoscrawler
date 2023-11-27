@@ -22,6 +22,7 @@ const CodeEditor = ({ value, onChange }) => {
         placeholder="Enter your solution"
         required
       />
+      <br></br>
     </div>
   );
 };
