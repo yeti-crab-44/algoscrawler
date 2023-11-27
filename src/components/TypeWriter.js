@@ -5,7 +5,7 @@ const TypeWriter = () => {
   return (
     <h1>
       <span style={{ fontSize: '40px' }}> Hello </span>
-      <span style={{ color: 'green', fontSize: '40px' }}>
+      <span style={{ color: '#2366a6', fontSize: '40px' }}>
         <Typewriter
           words={['World', 'ECRI-44', 'Developers!']}
           loop={10}

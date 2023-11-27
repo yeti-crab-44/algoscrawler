@@ -25,5 +25,5 @@ const CodeEditor = ({ value, onChange }) => {
     </div>
   );
 };
-
+//exported to Problem.js & AddSolution.js to utlize code editors
 export default CodeEditor;
