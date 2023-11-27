@@ -30,7 +30,7 @@ app.get(
   '/api/problems/:problemId/solutions',
   algoController.getSolutions,
   (req, res) => {
-    return res.status(200).json(res.locals.algoSolutions);
+    return res.status(200); //.json(res.locals.algoSolutions);
   }
 );
 
