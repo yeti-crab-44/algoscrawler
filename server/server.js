@@ -10,6 +10,7 @@ mongoose.connect(mongoURI);
 
 const connectDB = async () => {
   try {
+    // console.log('uri:', process.env.MONGO_URI)
     const connect = await mongoose.connect(mongoURI);
     console.log('----MongoDB connected...');
   } catch (err) {
@@ -21,17 +22,18 @@ connectDB();
 app.use(express.json()); //to receive req.body
 app.use(express.urlencoded({ extended: false }));
 
-//@GET get a problem
-app.get('/api/problems/:problemId', algoController.getProblem, (req, res) => {
-  return res.status(200).json(res.locals.problem);
+app.get('/api/problems', algoController.getAllProblems, (req, res) => {
+  return res.status(200).json(res.locals.allProblems);
 });
 
-//@POST add a solution to a problem
-app.post('/api/problems/:problemId', algoController.addSolution, (req, res) => {
-  return res.status(200).json(res.locals.updatedProblem);
-});
+app.get(
+  '/api/problems/:problemId/solutions',
+  algoController.getSolutions,
+  (req, res) => {
+    return res.status(200).json(res.locals.algoSolutions);
+  }
+);
 
-//@POST add a new problem
 app.post('/api/add-problem', algoController.addProblem, (req, res) => {
   return res.status(200).json(res.locals.algo);
 });
@@ -41,6 +43,7 @@ app.put('/api/add-solution', algoController.addSolution, (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  console.log(path.join(__dirname, '../src/index.html'));
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 

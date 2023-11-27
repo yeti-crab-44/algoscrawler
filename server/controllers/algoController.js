@@ -26,8 +26,8 @@ algoController.getSolutions = async (req, res, next) => {
     const search = await Algo.findOne({ _id });
     res.locals.algoSolutions = search;
     return next();
-  } catch (error) {
-    res.status(500).send('Server error');
+  } catch {
+    return next('error getting solutions');
   }
 };
 
@@ -55,32 +55,9 @@ algoController.addSolution = async (req, res, next) => {
     );
     res.locals.solution = newSolution;
 
-  //   return next();
-  // } catch {
-  //   return next('error in addSolution');
-  // }
-  const problemId = req.params.problemId;
-  const newSolution = req.body.solution;
-
-  if (!newSolution) {
-    return res.status(400).send('No solution provided');
-  }
-
-  try {
-    // find the problem by ID and add the new solution
-    const updatedProblem = await Algo.findByIdAndUpdate(
-      problemId,
-      { $push: { solutions: { solution: newSolution } } }, // add the new solution to the solutions array
-      { new: true } // return the updated document
-    );
-
-    if (!updatedProblem) {
-      return res.status(404).send('Problem not found');
-    }
-    res.locals.updatedProblem = updatedProblem;
     return next();
-  } catch (error) {
-    res.status(500).send(error.message);
+  } catch {
+    return next('error in addSolution');
   }
 };
 
