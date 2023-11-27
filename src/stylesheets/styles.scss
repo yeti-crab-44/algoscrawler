@@ -3,18 +3,15 @@
 body {
   font-family: 'Quantico', sans-serif;
   height: 100vh;
-  color: #13273e;
   background-color: aliceblue;
   background: url("https://i.ibb.co/0JcZvRr/seafloor.png") no-repeat bottom right, linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
   background-size: contain;
   //   overflow: hidden;
 }
 
-#heading {
-  // font-size: 2rem;
-  // font-weight: 700;
-  margin-bottom: 20px;
-  color: rgb(102, 195, 164);
+.heading {
+  font-size: 2.8vh;
+  color: #13273e;
 }
 
 // App
@@ -103,15 +100,17 @@ Button {
   font-size: 25px;
 }
 
-#yetiCrabs {
-  display: flex;
-  justify-content: center;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .crab {
   animation-name: dance1;
   animation-duration: 15s;
   animation-iteration-count: infinite;
+  position: relative;
   height: 10vw;
 }
 
@@ -119,6 +118,7 @@ Button {
   animation-name: dance2;
   animation-duration: 15s;
   animation-iteration-count: infinite;
+  position: relative;
   height: 10vw;
 }
 
@@ -140,7 +140,7 @@ Button {
 		transform: rotateZ(60deg);
 	}
   50% {
-    left: 100%;
+    left: 55%;
     transform: rotateZ(-40deg);
   }
 	60% {
@@ -179,7 +179,7 @@ Button {
 		transform: rotateZ(-40deg);
 	}
   50% {
-    left: 100%;
+    left: 55%;
     transform: rotateZ(60deg);
   }
 	60% {
