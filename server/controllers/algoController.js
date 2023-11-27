@@ -6,21 +6,23 @@ const Algo = require('../models/algoModel');
 
 const algoController = {};
 
-// algoController.getAllProblems = async (req, res, next) => {
-//   try {
-//     const algoName =
-//   }
-//   catch {
-
-//   }
-// }
+algoController.getAllProblems = async (req, res, next) => {
+  try {
+    console.log('you are in the getAllProblems method');
+    const search = await Algo.find();
+    console.log(search);
+    res.locals.allProblems = search;
+    return next();
+  } catch {
+    return next('error findingAll');
+  }
+};
 
 algoController.addProblem = async (req, res, next) => {
   try {
-    // console.log(req.body);
+    console.log(req.body);
     const newAlgo = req.body;
-    // console.log('newAlgo', newAlgo);
-
+    console.log('newAlgo', newAlgo);
     const createdAlgo = await Algo.create(newAlgo);
     console.log('createdAlgo', createdAlgo);
     res.locals.algo = createdAlgo;

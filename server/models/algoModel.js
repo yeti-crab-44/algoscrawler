@@ -3,7 +3,7 @@ const { ModuleFilenameHelpers } = require('webpack');
 const Schema = mongoose.Schema;
 
 const algoSchema = new Schema({
-  algo_name: { type: String, required: true, unique: true },
+  algo_name: { type: String, required: true },
   algo_prompt: { type: String, required: true },
   solutions: { type: Array },
 });
