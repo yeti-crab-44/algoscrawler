@@ -6,28 +6,33 @@ const mongoose = require('mongoose');
 
 const mongoURI =
   'mongodb+srv://algoscrawler:TeamYetiCrab@algoscrawler.jclszjj.mongodb.net/?retryWrites=true&w=majority';
-// mongoose.connect(mongoURI);
+mongoose.connect(mongoURI);
 
 const connectDB = async () => {
   try {
     // console.log('uri:', process.env.MONGO_URI)
     const connect = await mongoose.connect(mongoURI);
-    console.log('MongoDB connected...');
+    console.log('----MongoDB connected...');
   } catch (err) {
     console.log(`Error: ${err}`);
   }
 };
-
 connectDB();
 
 app.use(express.json()); //to receive req.body
 app.use(express.urlencoded({ extended: false }));
 
-app.post('/api/add-problem', algoController.testDB, (req, res) => {
-  console.log('hello');
-  console.log('req.body', req.body);
-  console.log('res.locals.user: ', res.json(res.locals.user));
-  res.status(200).json(res.locals.user);
+app.post('/api/add-problem', algoController.addProblem, (req, res) => {
+  // console.log('hello you have made it through the addProblem method');
+  // console.log('req.body', req.body.row);
+  // console.log('res.locals.user: ', res.json(res.locals.user));
+  return res.status(200).json(res.locals.algo); //.json(res.locals.user);
+});
+
+app.post('/api/add-solution', algoController.addSolution, (req, res) => {
+  console.log('you have made it out of the addSolution method');
+  res.status(200);
+  return res.status(200).json(res.locals.solution);
 });
 
 // when view is clicked, send query to users.algo.solutions
