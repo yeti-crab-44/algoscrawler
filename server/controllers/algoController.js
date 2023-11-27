@@ -10,9 +10,7 @@ const algoController = {};
 // '/api/problems'
 algoController.getAllProblems = async (req, res, next) => {
   try {
-    console.log('you are in the getAllProblems method');
     const search = await Algo.find();
-    console.log(search);
     res.locals.allProblems = search;
     return next();
   } catch {
@@ -26,7 +24,6 @@ algoController.getSolutions = async (req, res, next) => {
   try {
     const { _id } = req.body;
     const search = await Algo.findOne({ _id });
-    console.log(search);
     res.locals.algoSolutions = search;
     return next();
   } catch {
@@ -38,13 +35,9 @@ algoController.getSolutions = async (req, res, next) => {
 // '/api/add-problem'
 algoController.addProblem = async (req, res, next) => {
   try {
-    console.log(req.body);
     const newAlgo = req.body;
-    console.log('newAlgo', newAlgo);
     const createdAlgo = await Algo.create(newAlgo);
-    console.log('createdAlgo', createdAlgo);
     res.locals.algo = createdAlgo;
-    console.log('res.locals.algo', res.locals.algo);
     return next();
   } catch (err) {
     return next('this is an error', err);

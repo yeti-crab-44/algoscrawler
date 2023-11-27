@@ -42,22 +42,11 @@ app.put('/api/add-solution', algoController.addSolution, (req, res) => {
   return res.status(200).json(res.locals.solution);
 });
 
-// when view is clicked, send query to users.algo.solutions
-// return status and object
-
-// when add new problem is clicked
-// redirect to add problem page
-// take the body of the res and create new database entry
-
-// when submit is clicked in add problem, redirect to when view is clicked.
-
-// when add solution is clicked, redirect to Problem and Prompt
-// take body of res and create new database entry
-
 app.get('*', (req, res) => {
   console.log(path.join(__dirname, '../src/index.html'));
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
+
 app.use('*', (req, res) => {
   res.status(404).send('Error 404!');
 });
