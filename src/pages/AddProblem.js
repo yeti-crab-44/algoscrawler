@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProblem } from '../actions/actions';
 import '../stylesheets/styles.scss';
 
 const AddProblem = () => {
-  //   const [formData, setFormData] = useState({ problemName: '', prompt: '' });
-  //   const [problemName, prompt] = formData;
-
   const [problemName, setProblemName] = useState('');
   const [prompt, setPrompt] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const onChangeName = (e) => {
     setProblemName(e.target.value);
@@ -18,18 +18,37 @@ const AddProblem = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const lastAddedProblem = useSelector((state) => state.algos.lastAddedProblem);
+
+  // @desc    Add a new problem
+  // @route   POST api/problems
   const onSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true); //start loading
+    // create a new problem object
+    const newProblem = {
+      algo_name: problemName,
+      algo_prompt: prompt,
+    };
 
-    // @desc    Add a new problem
-    // @route   POST api/problems
-
-    const responseOK = true;
-    const idGenerated = 1;
-    if (responseOK) {
-      navigate(`/problem/${idGenerated}`);
-    }
+    dispatch(addProblem(newProblem))
+      .then(() => {
+        //if success, navigation will be handled in useEffect
+      })
+      .catch((error) => {
+        console.error('Failed to add problem:', error);
+        setIsLoading(false); // stop loading on error
+      });
   };
+
+  useEffect(() => {
+    if (isLoading && lastAddedProblem) {
+      navigate(`/problem/${lastAddedProblem._id}`);
+      setIsLoading(false); // stop loading after navigation
+    }
+  }, [isLoading, lastAddedProblem, navigate]);
 
   return (
     <div>

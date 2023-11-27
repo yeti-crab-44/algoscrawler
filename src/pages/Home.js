@@ -44,13 +44,15 @@ const Home = () => {
         ) : (
           problemList.map((problem) => (
             <ProblemItem
-              key={problem.id}
+              key={problem._id}
               id={problem._id}
               title={problem.algo_name}
             />
           ))
         )}
-        <button onClick={addProblemClick} id="addNewProblemButton">Add New Algo</button>
+        <button onClick={addProblemClick} id="addNewProblemButton">
+          Add New Algo
+        </button>
       </section>
     </div>
   );

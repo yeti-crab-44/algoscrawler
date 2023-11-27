@@ -65,7 +65,26 @@ export const addSolutionToAProblem = (problemId, solution) => {
   };
 };
 
-export const addProblem = (problem) => ({
-  type: types.ADD_PROBLEM,
-  payload: problem,
-});
+export const addProblem = (newProblemData) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch('/api/add-problem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProblemData),
+      });
+
+      const data = await response.json();
+      console.log('New problem added:', data);
+
+      dispatch({
+        type: types.ADD_PROBLEM,
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error adding problem:', error);
+    }
+  };
+};
