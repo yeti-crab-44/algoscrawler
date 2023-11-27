@@ -45,7 +45,7 @@ const Home = () => {
             <ProblemItem
               key={problem.id}
               id={problem.id}
-              title={problem.title}
+              title={problem.algo_name}
             />
           ))
         )}

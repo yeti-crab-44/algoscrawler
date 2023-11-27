@@ -10,9 +10,10 @@ export const viewAllProblems = () => {
       });
 
       const data = await response.json();
+      console.log('data:', data);
 
       dispatch({
-        type: VIEW_ALL_PROBLEMS,
+        type: types.VIEW_ALL_PROBLEMS,
         payload: data,
       });
     } catch (error) {
