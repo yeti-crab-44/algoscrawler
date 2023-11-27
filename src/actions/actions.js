@@ -1,7 +1,8 @@
 import * as types from '../constants/actionTypes';
 
 // action creators
-//thunk allows action creator to return a function other than an object
+//thunk allows action creator to return a function instead of an object
+//this function is allowed to have side effects, including executing asynchronous API calls. It receives the dispatch function as an argument
 export const viewAllProblems = () => {
   return async (dispatch) => {
     try {
@@ -10,8 +11,7 @@ export const viewAllProblems = () => {
       });
 
       const data = await response.json();
-      console.log('data:', data);
-
+      // After receiving the data, we dispatch a normal Redux action with the fetched data as the payload
       dispatch({
         type: types.VIEW_ALL_PROBLEMS,
         payload: data,
@@ -22,17 +22,50 @@ export const viewAllProblems = () => {
   };
 };
 
+export const viewOneProblemAndSolutions = (problemId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`/api/problems/${problemId}`, {
+        method: 'GET',
+      });
+
+      const data = await response.json();
+      //console.log('data from backend:', data);
+
+      dispatch({
+        type: types.VIEW_ONE_PROBLEM_AND_SOLUTIONS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error fetching single problem:', error);
+    }
+  };
+};
+
+export const addSolutionToAProblem = (problemId, solution) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`/api/problems/${problemId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ solution }),
+      });
+
+      const data = await response.json();
+
+      dispatch({
+        type: 'ADD_SOLUTION',
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error adding solution:', error);
+    }
+  };
+};
+
 export const addProblem = (problem) => ({
   type: types.ADD_PROBLEM,
   payload: problem,
-});
-
-export const viewOneProblemAndSolutions = (problemId) => ({
-  type: types.VIEW_ONE_PROBLEM_AND_SOLUTIONS,
-  payload: problemId,
-});
-
-export const addSolution = (problemId, solution) => ({
-  type: types.ADD_SOLUTION,
-  payload: { problemId, solution },
 });

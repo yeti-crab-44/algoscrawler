@@ -45,7 +45,7 @@ const Home = () => {
           problemList.map((problem) => (
             <ProblemItem
               key={problem.id}
-              id={problem.id}
+              id={problem._id}
               title={problem.algo_name}
             />
           ))
