@@ -4,11 +4,11 @@ import { Typewriter } from 'react-simple-typewriter';
 const TypeWriter = () => {
   return (
     <h1>
-      <span style={{ fontSize: '40px' }}> Hello </span>
-      <span style={{ color: 'green', fontSize: '40px' }}>
+      <span style={{ fontSize: '40px' , color: '#f3f7fc'}}> Hello </span>
+      <span style={{ color: '#2366a6', fontSize: '40px' }}>
         <Typewriter
           words={['World', 'ECRI-44', 'Developers!']}
-          loop={10}
+          loop={Infinity}
           cursor
           cursorStyle="<"
           typeSpeed={50}
