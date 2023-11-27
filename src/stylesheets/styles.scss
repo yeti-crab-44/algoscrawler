@@ -3,6 +3,7 @@
 body {
   font-family: 'Quantico', sans-serif;
   height: 100vh;
+  color: #13273e;
   background-color: aliceblue;
   background: url("https://i.ibb.co/0JcZvRr/seafloor.png") no-repeat bottom right, linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
   background-size: contain;
@@ -17,7 +18,7 @@ body {
 // App
 .container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1500px;
   text-align: center;
   margin: 0 auto;
   padding-bottom: 20px;
@@ -25,8 +26,12 @@ body {
 
 .solutions-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
   gap: 10px;
+  overflow: auto;
+  width: 100%;
+  white-space: nowrap;
+  scrollbar-color: #589ed8;
 }
 
 .code-editor {
@@ -42,14 +47,75 @@ body {
   background-color: #7db3b94b;
 }
 
+.loader {
+  font-size: 3vh;
+}
+
+#loaderCrab {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  margin-top: 20px;
+}
+
+/* unvisited link */
+a:link {
+  color: #13273e;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(109, 111, 145);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #e5eef9;
+}
+
+/* selected link */
+a:active {
+  color: #1c4770;
+}
+
 Button {
-  font-size: 20px;
-  border-radius: 5px;
+  font-size: 2vh;
   background-color: #1f568d;
   border-color: rgb(57, 60, 219);
   color: #e5eef9;
   font-family: 'Quantico', sans-serif;
   border-radius: 10px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+Button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+Button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+Button:hover span{
+  background-color: #1c3c5e;
+  color: #f3f7fc;
+  padding-right: 25px;
+}
+
+Button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 #indivAlgo {
@@ -198,4 +264,9 @@ footer {
     left: 0%;
 		transform: rotateZ(-40deg);
 	}
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }

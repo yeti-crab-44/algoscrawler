@@ -38,7 +38,10 @@ const Problem = () => {
   return (
     <div>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="loader">
+          <div>Loading...</div>
+          <div><img src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png" id="loaderCrab"/></div>
+        </div>
       ) : (
         <section>
           <h2>{problem.algo_name}</h2>
@@ -53,7 +56,7 @@ const Problem = () => {
               })
             )}
           </div>
-          <button onClick={addSolutionClick}>Add New Solution</button>
+          <button onClick={addSolutionClick}><span>Add New Solution</span></button>
         </section>
       )}
     </div>
