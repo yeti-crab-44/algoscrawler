@@ -62,7 +62,7 @@ algoController.addSolution = async (req, res, next) => {
   }
 };
 
-algoController.deleteAlgo = async (req, res, next) => {
+algoController.deleteSolution = async (req, res, next) => {
   try {
     return next();
   } catch {

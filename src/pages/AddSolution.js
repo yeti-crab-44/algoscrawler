@@ -14,25 +14,25 @@ const AddSolution = () => {
     setSolution(newValue);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     // @desc   Add a solution to a specific problem
     // @route  POST /api/problems/:problemId
-    dispatch(addSolutionToAProblem(id, solution));
+    await dispatch(addSolutionToAProblem(id, solution));
     setSolution(''); //reset local state
     navigate(`/problem/${id}`);
   };
 
   return (
     <div>
-    <section className="heading">
-    <h1>Add Solution</h1>
-    </section>
+      <section className="heading">
+        <h1>Add Solution</h1>
+      </section>
 
-    <section className="form-group">
-      <form onSubmit={onSubmit}>
-        <div className="code-editor">
-          {/* <textarea
+      <section className="form-group">
+        <form onSubmit={onSubmit}>
+          <div className="code-editor">
+            {/* <textarea
             type="text"
             id="solution"
             name="solution"
@@ -41,8 +41,8 @@ const AddSolution = () => {
             placeholder="Enter your solution"
             required
           /> */}
-          <CodeEditor value={solution} onChange={onChange} />
-        </div>
+            <CodeEditor value={solution} onChange={onChange} />
+          </div>
 
         <div className="form-group">
           <button><span>Submit</span></button>
