@@ -26,15 +26,23 @@ app.get('/api/problems', algoController.getAllProblems, (req, res) => {
   return res.status(200).json(res.locals.allProblems);
 });
 
+app.get(
+  '/api/problems/:problemId/solutions',
+  algoController.getSolutions,
+  (req, res) => {
+    return res.status(200).json(res.locals.algoSolutions);
+  }
+);
+
 app.post('/api/add-problem', algoController.addProblem, (req, res) => {
-  console.log('hello you have made it through the addProblem method');
+  // console.log('hello you have made it through the addProblem method');
 
   // console.log('res.locals.user: ', res.json(res.locals.user));
   return res.status(200).json(res.locals.algo);
 });
 
 app.post('/api/add-solution', algoController.addSolution, (req, res) => {
-  console.log('you have made it out of the addSolution method');
+  // console.log('you have made it out of the addSolution method');
   res.status(200);
   return res.status(200).json(res.locals.solution);
 });
