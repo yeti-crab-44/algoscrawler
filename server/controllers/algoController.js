@@ -61,5 +61,13 @@ algoController.addSolution = async (req, res, next) => {
   }
 };
 
+algoController.deleteAlgo = async (req, res, next) => {
+  try {
+    return next();
+  } catch {
+    return next('deleting the algo caused a problem');
+  }
+};
+
 algoController.view;
 module.exports = algoController;
