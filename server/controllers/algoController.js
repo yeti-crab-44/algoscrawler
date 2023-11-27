@@ -14,7 +14,13 @@ algoController.getAllProblems = async (req, res, next) => {
     res.locals.allProblems = search;
     return next();
   } catch {
-    return next('error findingAll');
+    return next({
+      log: 'Error located in algoController.getAllProblems.',
+      status: 500,
+      message: {
+        err: "I'm sorry, we are having unable to retrieve your saved algorithms.",
+      },
+    });
   }
 };
 
@@ -27,7 +33,13 @@ algoController.getSolutions = async (req, res, next) => {
     res.locals.algoSolutions = search;
     return next();
   } catch {
-    return next('error getting solutions');
+    return next({
+      log: 'Error located in algoController.addSolution.',
+      status: 500,
+      message: {
+        err: "I'm sorry, we are having difficulties retrieving this algorithm and its solutions.",
+      },
+    });
   }
 };
 
@@ -40,7 +52,13 @@ algoController.addProblem = async (req, res, next) => {
     res.locals.algo = createdAlgo;
     return next();
   } catch (err) {
-    return next('this is an error', err);
+    return next({
+      log: 'Error located in algoController.addProblems.',
+      status: 500,
+      message: {
+        err: "I'm sorry, we are having difficulties adding a new problem",
+      },
+    });
   }
 };
 
@@ -54,10 +72,15 @@ algoController.addSolution = async (req, res, next) => {
       { $push: { solutions: { newSolution } } }
     );
     res.locals.solution = newSolution;
-
     return next();
   } catch {
-    return next('error in addSolution');
+    return next({
+      log: 'Error located in algoController.addSolution.',
+      status: 500,
+      message: {
+        err: "I'm sorry, we are having difficulties adding a solution.",
+      },
+    });
   }
 };
 
@@ -65,7 +88,11 @@ algoController.deleteAlgo = async (req, res, next) => {
   try {
     return next();
   } catch {
-    return next('deleting the algo caused a problem');
+    return next({
+      log: 'Error located in algoController.deleteAlgo.',
+      status: 500,
+      message: { err: "I'm sorry, we can't delete this algorithm." },
+    });
   }
 };
 
