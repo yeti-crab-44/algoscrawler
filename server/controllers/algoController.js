@@ -24,8 +24,8 @@ algoController.getAllProblems = async (req, res, next) => {
 // '/api/problems/:problemId/solutions'
 algoController.getSolutions = async (req, res, next) => {
   try {
-    const { algo_name } = req.body;
-    const search = await Algo.findOne({ algo_name });
+    const { _id } = req.body;
+    const search = await Algo.findOne({ _id });
     console.log(search);
     res.locals.algoSolutions = search;
     return next();
@@ -51,18 +51,15 @@ algoController.addProblem = async (req, res, next) => {
   }
 };
 
+// pushes a new object into the solutions array
 // '/api/add-solution'
 algoController.addSolution = async (req, res, next) => {
   try {
-    const { algo_name, newSolution } = req.body;
-    console.log(req.body);
-    // const search = await Algo.findOne({ algo_name });
-    // console.log('search:', search);
+    const { _id, newSolution } = req.body;
     const update = await Algo.updateOne(
-      { algo_name },
+      { _id },
       { $push: { solutions: { newSolution } } }
     );
-    console.log(update);
     res.locals.solution = newSolution;
 
     return next();
