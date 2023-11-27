@@ -12,10 +12,10 @@ const Problem = () => {
     navigate(`/problem/${id}/add-solution`);
   };
 
-  /* -----------------------mock data---------------------*/
   // @desc   Get single problem and associated solutions
   // @route  GET /api/problems/:problemId/solutions
 
+  /* -----------------------mock data---------------------*/
   function add(a, b) {
     return a + b;
   }
