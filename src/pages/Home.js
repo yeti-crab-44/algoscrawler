@@ -51,7 +51,9 @@ const Home = () => {
           ))
         )}
         <button onClick={addProblemClick} id="addNewProblemButton">
+          <span>
           Add New Algo
+            </span>
         </button>
       </section>
     </div>
