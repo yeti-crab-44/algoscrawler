@@ -10,7 +10,6 @@ mongoose.connect(mongoURI);
 
 const connectDB = async () => {
   try {
-    // console.log('uri:', process.env.MONGO_URI)
     const connect = await mongoose.connect(mongoURI);
     console.log('----MongoDB connected...');
   } catch (err) {
@@ -22,29 +21,24 @@ connectDB();
 app.use(express.json()); //to receive req.body
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/api/problems', algoController.getAllProblems, (req, res) => {
-  return res.status(200).json(res.locals.allProblems);
+//@GET get a problem
+app.get('/api/problems/:problemId', algoController.getProblem, (req, res) => {
+  return res.status(200).json(res.locals.problem);
 });
 
-app.get(
-  '/api/problems/:problemId/solutions',
-  algoController.getSolutions,
-  (req, res) => {
-    return res.status(200).json(res.locals.algoSolutions);
-  }
-);
+//@POST add a solution to a problem
+app.post('/api/problems/:problemId', algoController.addSolution, (req, res) => {
+  return res.status(200).json(res.locals.updatedProblem);
+});
 
+//@POST add a new problem
 app.post('/api/add-problem', algoController.addProblem, (req, res) => {
-  // console.log('hello you have made it through the addProblem method');
-
-  // console.log('res.locals.user: ', res.json(res.locals.user));
   return res.status(200).json(res.locals.algo);
 });
 
-app.post('/api/add-solution', algoController.addSolution, (req, res) => {
-  // console.log('you have made it out of the addSolution method');
-  res.status(200);
-  return res.status(200).json(res.locals.solution);
+// @GET get all problems
+app.get('/api/problems', algoController.getAllProblems, (req, res) => {
+  return res.status(200).json(res.locals.allProblems);
 });
 
 // when view is clicked, send query to users.algo.solutions
@@ -60,7 +54,6 @@ app.post('/api/add-solution', algoController.addSolution, (req, res) => {
 // take body of res and create new database entry
 
 app.get('*', (req, res) => {
-  console.log(path.join(__dirname, '../src/index.html'));
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 app.use('*', (req, res) => {

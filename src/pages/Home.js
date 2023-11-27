@@ -22,11 +22,11 @@ const Home = () => {
 
   /* -----------------------mock data---------------------*/
   // const problemList = [
-  //   { id: 1, algo_name: 'Two Sum' },
-  //   { id: 2, algo_name: 'Sudoku Solver' },
+  //   { id: 1, title: 'Two Sum' },
+  //   { id: 2, title: 'Sudoku Solver' },
   //   {
   //     id: 3,
-  //     algo_name: 'Median of Two Sorted Arrays',
+  //     title: 'Median of Two Sorted Arrays',
   //   },
   // ];
   /* -----------------------mock data---------------------*/
@@ -44,7 +44,7 @@ const Home = () => {
           problemList.map((problem) => (
             <ProblemItem
               key={problem.id}
-              id={problem.id}
+              id={problem._id}
               title={problem.algo_name}
             />
           ))

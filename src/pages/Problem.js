@@ -1,63 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CodeEditor from '../components/CodeEditor';
 import { useSelector, useDispatch } from 'react-redux';
+import { viewOneProblemAndSolutions } from '../actions/actions';
 
 const Problem = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  //Use isLoading to delay the rendering of components until the data is fully loaded and available
+  //if you try to access properties of an object that hasn't been fetched yet, it will result in a runtime error
+  const [isLoading, setIsLoading] = useState(true);
+  const problem = useSelector((state) => state.algos.currentProblem);
+  console.log('currentProblem in state:', problem);
 
   // @desc   Get single problem and associated solutions
-  // @route  GET /api/problems/:problemId/solutions
-  useEffect(() => {
-    dispatch(viewOneProblemAndSolutions(id));
-  }, [dispatch, id]);
+  // @route  GET /api/problems/:problemId
 
-  const problem = useSelector((state) => state.algos.currentProblem);
+  //since we use redux thunk, action creators can return promises, which allows us to use .then()
+  useEffect(() => {
+    setIsLoading(true);
+    dispatch(viewOneProblemAndSolutions(id))
+      .then(() => {
+        console.log('Data fetched successfully');
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error fetching data:', error);
+        setIsLoading(false);
+      });
+  }, [dispatch, id, problem]);
 
   const navigate = useNavigate();
   const addSolutionClick = () => {
     navigate(`/problem/${id}/add-solution`);
   };
-  /* -----------------------mock data---------------------*/
-  // function add(a, b) {
-  //   return a + b;
-  // }
-  // const solution1 = add.toString();
-
-  // const problemOne = {
-  //   id: 1,
-  //   algo_name: 'Two Sum',
-  //   algo_prompt:
-  //     'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.',
-  //   solutions: [
-  //     {
-  //       solution: solution1,
-  //     },
-
-  //     {
-  //       solution: solution1,
-  //     },
-  //   ],
-  // };
-  /* -----------------------mock data---------------------*/
 
   return (
-    <section>
-      <h2> {problem.algo_name} </h2>
-      <p> {problem.algo_prompt} </p>
-
-      <div className="solutions-container">
-        {problem.solutions.length === 0 ? (
-          <div>Currently no solutions</div>
-        ) : (
-          problem.solutions.map((solution) => (
-            <CodeEditor value={solution.solution} />
-          ))
-        )}
-      </div>
-      <button onClick={addSolutionClick}>Add New Solution</button>
-    </section>
+    <div>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <section>
+          <h2>{problem.algo_name}</h2>
+          <p>{problem.algo_prompt}</p>
+          <div className="solutions-container">
+            {problem.solutions.length === 0 ? (
+              <div>Currently no solutions</div>
+            ) : (
+              problem.solutions.map((solution, idx) => {
+                console.log('solution:', solution);
+                return <CodeEditor key={idx} value={solution.solution} />;
+              })
+            )}
+          </div>
+          <button onClick={addSolutionClick}>Add New Solution</button>
+        </section>
+      )}
+    </div>
   );
 };
 

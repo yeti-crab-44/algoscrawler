@@ -9,9 +9,7 @@ const algoController = {};
 //'/api/problems'
 algoController.getAllProblems = async (req, res, next) => {
   try {
-    console.log('you are in the getAllProblems method');
     const search = await Algo.find();
-    console.log(search);
     res.locals.allProblems = search;
     return next();
   } catch {
@@ -19,58 +17,77 @@ algoController.getAllProblems = async (req, res, next) => {
   }
 };
 
-//'/api/problems/:problemId/solutions'
-algoController.getSolutions = async (req, res, next) => {
+//'/api/problems/:problemId'
+algoController.getProblem = async (req, res, next) => {
   try {
-    const algo_name = req.body;
-    console.log('algo_name', algo_name);
-    const search = await Algo.findOne({ algo_name });
-    console.log(search);
-    res.locals.algoSolutions = search;
-    // if (search) {
-    //   res.locals.algoSolutions = search.solutions;
-    // } else {
-    //   res.redirect('/api/add-problem');
-    // }
+    const id = req.params.problemId;
+    const problem = await Algo.findById(id);
+    if (!problem) {
+      return res.status(404).send('Problem not found');
+    }
+    res.locals.problem = problem;
     return next();
-  } catch {
-    return next('error getting solutions');
+  } catch (error) {
+    res.status(500).send('Server error');
   }
 };
 
 //'/api/add-problem'
 algoController.addProblem = async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const newAlgo = req.body;
-    console.log('newAlgo', newAlgo);
+    // console.log('newAlgo', newAlgo);
     const createdAlgo = await Algo.create(newAlgo);
-    console.log('createdAlgo', createdAlgo);
+    // console.log('createdAlgo', createdAlgo);
     res.locals.algo = createdAlgo;
-    console.log('res.locals.algo', res.locals.algo);
+    // console.log('res.locals.algo', res.locals.algo);
     return next();
   } catch (err) {
     return next('this is an error', err);
   }
 };
 
-//'/api/add-solution'
+//'/api/problems/:problemId'
 algoController.addSolution = async (req, res, next) => {
-  try {
-    const { algo_name, newSolution } = req.body;
-    console.log(req.body);
-    const search = await Algo.findOne({ algo_name });
-    console.log('search', search);
-    search.updateOne({
-      [search.solutions]: search.solutions.push(newSolution),
-    });
-    //replacing, not pushing
-    res.locals.solution = search.solutions;
-    console.log('search after adding solution', search);
+  // try {
+  //   const { algo_name, newSolution } = req.body;
+  //   // console.log(req.body);
+  //   const search = await Algo.findOne({ algo_name });
+  //   // console.log('search', search);
+  //   search.updateOne({
+  //     [search.solutions]: search.solutions.push(newSolution),
+  //   });
+  //   //replacing, not pushing
+  //   res.locals.solution = search.solutions;
+  //   // console.log('search after adding solution', search);
 
+  //   return next();
+  // } catch {
+  //   return next('error in addSolution');
+  // }
+  const problemId = req.params.problemId;
+  const newSolution = req.body.solution;
+
+  if (!newSolution) {
+    return res.status(400).send('No solution provided');
+  }
+
+  try {
+    // find the problem by ID and add the new solution
+    const updatedProblem = await Algo.findByIdAndUpdate(
+      problemId,
+      { $push: { solutions: { solution: newSolution } } }, // add the new solution to the solutions array
+      { new: true } // return the updated document
+    );
+
+    if (!updatedProblem) {
+      return res.status(404).send('Problem not found');
+    }
+    res.locals.updatedProblem = updatedProblem;
     return next();
-  } catch {
-    return next('error in addSolution');
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };
 
