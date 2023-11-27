@@ -1,25 +1,8 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  problems: [
-    // {
-    //     id: 'problem1',
-    //     title: 'Two Sum',
-    //     prompt: 'Problem Description',
-    //     solutions: [
-    //         {
-    //             id: 'solution1',
-    //             solutionText: 'Solution Content'
-    //         },
-    //         {
-    //             id: 'solution2',
-    //             solutionText: 'Solution Content'
-    //         }
-    //     ]
-    // }
-  ],
-  loading: false,
-  error: null,
+  problems: [],
+  currentProblem: null,
 };
 
 const algosReducer = (state = initialState, action) => {
@@ -28,6 +11,21 @@ const algosReducer = (state = initialState, action) => {
       return {
         ...state,
         problems: action.payload,
+      };
+
+    case types.VIEW_ONE_PROBLEM_AND_SOLUTIONS:
+      return {
+        ...state,
+        currentProblem: action.payload,
+      };
+
+    case types.ADD_SOLUTION:
+      return {
+        ...state,
+        problems: state.problems.map((problem) =>
+          //action.payload contains the updated problem with new solution added
+          problem._id === action.payload._id ? action.payload : problem
+        ),
       };
 
     default:

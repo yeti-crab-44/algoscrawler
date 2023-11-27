@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import CodeEditor from '../components/CodeEditor';
+import { addSolutionToAProblem } from '../actions/actions';
 
 const AddSolution = () => {
   const [solution, setSolution] = useState('');
-
-  const onChange = (newValue) => {
-    // setSolution(e.target.value);
-    setSolution(newValue);
-  };
-
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onChange = (newValue) => {
+    setSolution(newValue);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     // @desc   Add a solution to a specific problem
-    // @route  POST /api/problems/:problemId/solutions
+    // @route  POST /api/problems/:problemId
+    dispatch(addSolutionToAProblem(id, solution));
+    setSolution(''); //reset local state
     navigate(`/problem/${id}`);
   };
 
