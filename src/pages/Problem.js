@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import CodeEditor from '../components/CodeEditor';
 import { useSelector, useDispatch } from 'react-redux';
 import { viewOneProblemAndSolutions } from '../actions/actions';
+import { updateSolutionAction } from '../actions/actions';
 
 const Problem = () => {
   const { id } = useParams();
@@ -35,8 +36,8 @@ const Problem = () => {
     navigate(`/problem/${id}/add-solution`);
   };
 
-  const handleUpdate = (updatedSolution, solutionId) => {
-    dispatch(updateSolutionAction(id, solution._id, updatedSolution));
+  const handleUpdate = (updatedSolution, solutionIdx) => {
+    dispatch(updateSolutionAction(id, solutionIdx, updatedSolution));
   };
 
   return (
@@ -59,9 +60,7 @@ const Problem = () => {
                 return (
                   <div key={idx}>
                     <CodeEditor value={solution.solution} />
-                    <button
-                      onClick={() => handleUpdate(solution, solution._id)}
-                    >
+                    <button onClick={() => handleUpdate(solution, idx)}>
                       Update
                     </button>
                   </div>

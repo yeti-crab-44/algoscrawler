@@ -9,7 +9,7 @@ body {
       right,
     linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
   background-size: contain;
-  //   overflow: hidden;
+  // overflow: hidden;
 }
 
 .heading {
@@ -32,7 +32,8 @@ body {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
-  overflow-y: scroll;
+  overflow: auto;
+  white-space: nowrap;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -52,6 +53,39 @@ body {
   height: 100%;
   overflow: auto;
   white-space: nowrap;
+}
+
+.loader {
+  font-size: 3vh;
+}
+
+#loaderCrab {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  margin-top: 20px;
+}
+
+/* unvisited link */
+a:link {
+  color: #13273e;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(109, 111, 145);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #e5eef9;
+}
+
+/* selected link */
+a:active {
+  color: #1c4770;
 }
 
 .loader {
@@ -171,7 +205,7 @@ Button:hover span:after {
 
 footer {
   position: relative;
-  margin-top: 12vh;
+  margin-top: 10vh;
   bottom: 0;
   width: 100%;
 }

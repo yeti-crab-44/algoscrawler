@@ -43,12 +43,13 @@ const AddSolution = () => {
           /> */}
             <CodeEditor value={solution} onChange={onChange} />
           </div>
-
-        <div className="form-group">
-          <button><span>Submit</span></button>
-        </div>
-      </form>
-    </section>
+          <div className="form-group">
+            <button>
+              <span>Submit</span>
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 };

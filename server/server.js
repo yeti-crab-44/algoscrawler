@@ -38,6 +38,14 @@ app.put('/api/problems/:problemId', algoController.addSolution, (req, res) => {
   return res.status(200).json(res.locals.updatedAlgo);
 });
 
+app.patch(
+  '/api/solutions/:problemId/:solutionIdx', //deleted :problemId/:solutionIdx
+  algoController.updateSolution,
+  (req, res) => {
+    return res.status(200).json(res.locals.updateSolution);
+  }
+);
+
 app.get('*', (req, res) => {
   console.log(path.join(__dirname, '../src/index.html'));
   res.sendFile(path.join(__dirname, '../src/index.html'));
