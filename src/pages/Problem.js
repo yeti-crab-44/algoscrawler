@@ -52,7 +52,7 @@ const Problem = () => {
           <p>{problem.algo_prompt}</p>
           <div className="solutions-container">
             {problem.solutions.length === 0 ? (
-              <div>Currently no solutions</div>
+              <div id="noSolution">Currently no solutions</div>
             ) : (
               problem.solutions.map((solution, idx) => {
                 // console.log('solution:', solution);

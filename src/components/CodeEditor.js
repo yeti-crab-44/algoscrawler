@@ -11,7 +11,7 @@ import 'ace-builds/src-noconflict/theme-monokai'; // import theme
 
 const CodeEditor = ({ value, onChange }) => {
   return (
-    <div>
+    <div className='codeEditor'>
       <AceEditor
         mode="javascript"
         theme="monokai"
