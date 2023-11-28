@@ -83,9 +83,7 @@ const AddProblem = () => {
           </div>
 
           <div className="form-group">
-            <button id="addProblemSubmit">
-              <span>Submit</span>
-            </button>
+            <button id="addProblemSubmit"><span>Submit</span></button>
           </div>
         </form>
       </section>

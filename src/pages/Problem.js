@@ -45,12 +45,7 @@ const Problem = () => {
       {isLoading ? (
         <div className="loader">
           <div>Loading...</div>
-          <div>
-            <img
-              src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png"
-              id="loaderCrab"
-            />
-          </div>
+          <div><img src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png" id="loaderCrab"/></div>
         </div>
       ) : (
         <section>
@@ -58,7 +53,7 @@ const Problem = () => {
           <p>{problem.algo_prompt}</p>
           <div className="solutions-container">
             {problem.solutions.length === 0 ? (
-              <div>Currently no solutions</div>
+              <div id="noSolution">Currently no solutions</div>
             ) : (
               problem.solutions.map((solution, idx) => {
                 // console.log('solution:', solution);
@@ -73,9 +68,7 @@ const Problem = () => {
               })
             )}
           </div>
-          <button onClick={addSolutionClick}>
-            <span>Add New Solution</span>
-          </button>
+          <button onClick={addSolutionClick}><span>Add New Solution</span></button>
         </section>
       )}
     </div>

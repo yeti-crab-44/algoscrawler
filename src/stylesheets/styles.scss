@@ -50,6 +50,42 @@ body {
   border-radius: 20px;
   padding: 20px;
   background-color: #7db3b94b;
+  height: 100%;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.loader {
+  font-size: 3vh;
+}
+
+#loaderCrab {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  margin-top: 20px;
+}
+
+/* unvisited link */
+a:link {
+  color: #13273e;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(109, 111, 145);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #e5eef9;
+}
+
+/* selected link */
+a:active {
+  color: #1c4770;
 }
 
 .loader {
@@ -93,7 +129,7 @@ Button {
   font-family: 'Quantico', sans-serif;
   border-radius: 10px;
   margin-top: 20px;
-  padding: 5px;
+  padding: 10px;
 }
 
 Button span {
