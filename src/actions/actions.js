@@ -65,6 +65,32 @@ export const addSolutionToAProblem = (problemId, solution) => {
   };
 };
 
+export const updateSolutionAction = (problemId, solutionIdx, solution) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `/api/solutions/${problemId}/${solutionIdx}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ solution }),
+        }
+      );
+
+      const data = await response.json();
+
+      dispatch({
+        type: 'UPDATE_SOLUTION',
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error adding solution:', error);
+    }
+  };
+};
+
 export const addProblem = (newProblemData) => {
   return async (dispatch) => {
     try {

@@ -22,6 +22,34 @@ const App = () => {
           <Route path="/add-problem" element={<AddProblem />} />
           <Route path="/problem/:id/add-solution" element={<AddSolution />} />
         </Routes>
+        <footer>
+          <div id="yetiCrabs">
+            <a>
+              <img
+                src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png"
+                class="crabE"
+              />
+            </a>
+            <a>
+              <img
+                src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png"
+                class="crab"
+              />
+            </a>
+            <a>
+              <img
+                src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png"
+                class="crabE"
+              />
+            </a>
+            <a>
+              <img
+                src="https://static.wikia.nocookie.net/octonauts/images/0/00/Yeti_crab.png"
+                class="crab"
+              />
+            </a>
+          </div>
+        </footer>
       </div>
     </BrowserRouter>
   );

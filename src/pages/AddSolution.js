@@ -45,7 +45,9 @@ const AddSolution = () => {
           </div>
 
           <div className="form-group">
-            <button>Submit</button>
+            <button>
+              <span>Submit</span>
+            </button>
           </div>
         </form>
       </section>

@@ -37,6 +37,15 @@ const algosReducer = (state = initialState, action) => {
         problems: [...state.problems, action.payload],
       };
 
+    case types.UPDATE_SOLUTION:
+      return {
+        ...state,
+        problems: state.problems.map((problem) =>
+          //action.payload contains the updated problem with new solution added
+          problem._id === action.payload._id ? action.payload : problem
+        ),
+      };
+
     default:
       return state;
   }

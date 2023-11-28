@@ -2,11 +2,14 @@
 
 body {
   font-family: 'Quantico', sans-serif;
-  height: 100vh;
+  height: 100%;
+  color: #13273e;
   background-color: aliceblue;
-  background: url("https://i.ibb.co/0JcZvRr/seafloor.png") no-repeat bottom right, linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
+  background: url('https://i.ibb.co/0JcZvRr/seafloor.png') no-repeat bottom
+      right,
+    linear-gradient(315deg, #589ed8 0%, #e5eef9 100%);
   background-size: contain;
-  //   overflow: hidden;
+  // overflow: hidden;
 }
 
 .heading {
@@ -16,20 +19,27 @@ body {
 
 // App
 .container {
-  width: 100%;
-  max-width: 1000px;
+  width: 50vw;
+  max-width: 2000px;
   text-align: center;
   margin: 0 auto;
   padding-bottom: 20px;
+  font-size: 2.2vh;
+  color: #13273e;
 }
 
 .solutions-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   gap: 10px;
+  overflow: auto;
+  white-space: nowrap;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .code-editor {
+  margin: 10px;
   display: flex;
   justify-content: center;
 }
@@ -42,14 +52,75 @@ body {
   background-color: #7db3b94b;
 }
 
+.loader {
+  font-size: 3vh;
+}
+
+#loaderCrab {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  margin-top: 20px;
+}
+
+/* unvisited link */
+a:link {
+  color: #13273e;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(109, 111, 145);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #e5eef9;
+}
+
+/* selected link */
+a:active {
+  color: #1c4770;
+}
+
 Button {
-  font-size: 20px;
-  border-radius: 5px;
+  font-size: 2vh;
   background-color: #1f568d;
   border-color: rgb(57, 60, 219);
   color: #e5eef9;
   font-family: 'Quantico', sans-serif;
   border-radius: 10px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+Button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+Button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+Button:hover span {
+  background-color: #1c3c5e;
+  color: #f3f7fc;
+  padding-right: 25px;
+}
+
+Button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 #indivAlgo {
@@ -58,11 +129,6 @@ Button {
   background-color: rgba(240, 248, 255, 0.308);
   border-radius: 10px;
   padding: 10px;
-}
-
-.form {
-  width: 50%;
-  margin: 0 auto;
 }
 
 .form-group {
@@ -87,7 +153,7 @@ Button {
 }
 
 #problemName {
-  font-size: 20px;
+  font-size: 2.2vh;
   border-radius: 5px;
   font-family: 'Quantico', sans-serif;
   color: #13273e;
@@ -96,12 +162,14 @@ Button {
 #prompt {
   color: rgb(81, 248, 231);
   background-color: rgb(51, 47, 47);
-  width: 25vw;
-  font-size: 25px;
+  width: 40vw;
+  height: 20vw;
+  font-size: 2.5vh;
 }
 
 footer {
-  position: absolute;
+  position: relative;
+  margin-top: 10vh;
   bottom: 0;
   width: 100%;
 }
@@ -122,80 +190,119 @@ footer {
   height: 10vw;
 }
 
+/* scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* scrollbar Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(141, 216, 235),
+    rgb(78, 139, 219)
+  );
+  border-radius: 10px;
+}
+
+/* scrollbar Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(78, 139, 219),
+    rgb(141, 216, 235)
+  );
+}
+
 @keyframes dance1 {
   0% {
-		left: 0%;
+    left: -50%;
     transform: rotateZ(60deg);
-	}
+  }
   10% {
-		transform: rotateZ(-40deg);
-	}
-	20% {
-		transform: rotateZ(60deg);
-	}
-	30% {
-		transform: rotateZ(-40deg);
-	}
-  40% {
-		transform: rotateZ(60deg);
-	}
-  50% {
-    left: 55%;
     transform: rotateZ(-40deg);
   }
-	60% {
-		transform: rotateZ(60deg);
-	}
+  20% {
+    transform: rotateZ(60deg);
+  }
+  30% {
+    transform: rotateZ(-40deg);
+  }
+  40% {
+    transform: rotateZ(60deg);
+  }
+  50% {
+    left: 50%;
+    transform: rotateZ(-40deg);
+  }
+  60% {
+    transform: rotateZ(60deg);
+  }
   70% {
-		transform: rotateZ(-40deg);
-	}
+    transform: rotateZ(-40deg);
+  }
   80% {
     transform: rotateZ(60deg);
   }
   90% {
-		transform: rotateZ(-40deg);
-	}
-	100% {
-    left: 0%;
-		transform: rotateZ(60deg);
-	}
+    transform: rotateZ(-40deg);
+  }
+  100% {
+    left: -50%;
+    transform: rotateZ(60deg);
+  }
 }
 
 @keyframes dance2 {
   0% {
-		left: 0%;
+    left: -50%;
     transform: rotateZ(-40deg);
-	}
+  }
   10% {
-		transform: rotateZ(60deg);
-	}
-	20% {
-		transform: rotateZ(-40deg);
-	}
-	30% {
-		transform: rotateZ(60deg);
-	}
-  40% {
-		transform: rotateZ(-40deg);
-	}
-  50% {
-    left: 55%;
     transform: rotateZ(60deg);
   }
-	60% {
-		transform: rotateZ(-40deg);
-	}
+  20% {
+    transform: rotateZ(-40deg);
+  }
+  30% {
+    transform: rotateZ(60deg);
+  }
+  40% {
+    transform: rotateZ(-40deg);
+  }
+  50% {
+    left: 50%;
+    transform: rotateZ(60deg);
+  }
+  60% {
+    transform: rotateZ(-40deg);
+  }
   70% {
-		transform: rotateZ(60deg);
-	}
+    transform: rotateZ(60deg);
+  }
   80% {
     transform: rotateZ(-40deg);
   }
   90% {
-		transform: rotateZ(60deg);
-	}
-	100% {
-    left: 0%;
-		transform: rotateZ(-40deg);
-	}
+    transform: rotateZ(60deg);
+  }
+  100% {
+    left: -50%;
+    transform: rotateZ(-40deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
